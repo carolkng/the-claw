@@ -61,6 +61,8 @@
 <h2>
 <a id="1-introduction" class="anchor" href="#1-introduction" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>1. Introduction</h2>
 
+<p><img src="artview.jpg" alt="The robot, the myth, the legend"></p>
+
 <p>The Claw is a robot that can navigate a city whose roads are marked with black electrical tape on a white surface using 4 QRD 1114 reflectivity sensors, detect stuffed animal passengers with QSD 1124 infrared sensors, and pick them up with a large claw. The robot receives instructions from a TINAH board running mostly Arduino code. It was created and completed in the summer of second year for the ENPH 253: Introduction to Instrument Design course/competition at UBC by Tara Akhound-Sadegh, <a href="https://carolkng.github.io">Carol Ng</a>, Jamie O'Conniff, and Dylan Whitney.</p>
 
 <h2>
@@ -68,9 +70,12 @@
 
 <p>Jamie and Dylan were responsible for the majority of the robot's mechanical design. All parts were designed in Solidworks and fabricated (in order of most used) with a combination of a waterjet cutter, machine shop/hand tools, 3D printers, and a laser cutter.</p>
 
+<p><img src="claw.jpg" alt="Initial claw design"></p>
+
 <p>Our initial design concept featured storage for passengers holding up to 3 animals (with on in the claw), a fully articulated arm with 2 degrees of freedom on a rotating platform, and a bulk ejection system for quick dropoff of all passengers at the destination area. In order to maximize passenger storage and freedom of arm movement, the robot was to be around 14" tall with a 11" by 11" base, not including the 0.5" thick bumper on all sides to detect collisions with other robots. For the drivetrain, we opted to use two electric motors with one small gear reduction to keep the motor running at its most efficient RPM while keeping our robot moving at the desired target speed. The gears and wheels were both cut from clear polycarbonate on the waterjet cutter.</p>
 
-<p>The final robot features a similarly dimensioned arm which moves with one degree of freedom and three easily accessible vertical shelves for the TINAH board and all associated circuitry, which drastically reduces debugging and startup time. To reduce the likelihood of a collision with the sidewalk when performing U-turns, the shape of the chassis is much more rounded and compact, compared to the original. Since the original bumper design would only fit on straight edges, we opted to replace the protruding bumper with a skirt made of a thin continuous sheet of aluminum.</p>
+<p><img src="claw2.jpg" alt="Final arm and claw">
+The final robot features a similarly dimensioned arm which moves with one degree of freedom and three easily accessible vertical shelves for the TINAH board and all associated circuitry, which drastically reduces debugging and startup time. To reduce the likelihood of a collision with the sidewalk when performing U-turns, the shape of the chassis is much more rounded and compact, compared to the original. Since the original bumper design would only fit on straight edges, we opted to replace the protruding bumper with a skirt made of a thin continuous sheet of aluminum.</p>
 
 <p>As there was not enough time to fully dimension every part in Solidworks before fabrication, our approach was to get files ready for the waterjet cutter or laser cutter as quickly as possible, then assemble parts using hand tools and non-permanent fasteners in order to see what works as quickly as possible. The major drawback of this approach was that the prototypes would not look nearly as aesthetically pleasing, and a part's holes or bends would not align as well as a completely CADed part would have.</p>
 
@@ -82,17 +87,21 @@
 <h3>
 <a id="31-tapefinding" class="anchor" href="#31-tapefinding" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>3.1. Tapefinding</h3>
 
+<p><img src="QRD.jpg" alt="Tapefinding comparator circuit"></p>
+
 <p>For tape following and intersection detection, we chose a system of 4 QRD 1114 sensors connected to a comparator circuit to set a threshold for HI/LO output depending on whether the robot sees tape. A testing system consisting of 4 LEDs was used to improve visual feedback when adjusting the thresholds of each QRD sensor and decrease setup time. Intersection detection was critical to our robot's ability to navigate the map and helped make sure that we didn't fall off the surface when we reached a sharp corner (more in <a href="#software">Software</a>). Although we ended up soldering one potentiometer for each sensor, it turned out that the sensors were similar enough that the tuning could have been accomplished using one potentiometer.</p>
 
 <h3>
 <a id="32-infrared-sensing" class="anchor" href="#32-infrared-sensing" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>3.2 Infrared sensing</h3>
+
+<p><img src="QSD.jpg" alt="Infrared sensor circuit"></p>
 
 <p>To detect passengers both at intersections and on the sidewalk, we soldered a total of 5 infrared sensor circuits: 3 for long range infrared sensing at intersections to determine which path was more likely to contain a passenger, and 2 on either side of the robot to see if a passenger is ready to be picked up. The circuits were made of 5 key components: a DC block, a 100x amplifier, a 1kHz bandpass filter, another amplifier with tunable amplification, and a peak detector.</p>
 
 <h2>
 <a id="4-software" class="anchor" href="#4-software" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>4 Software</h2>
 
-<p>Software was jointly written by Tara and Carol using Arduino. Some PID control algorithms were reused from previous ENPH 253 labs, but other methods were written completely from scratch. You can download the code we used for the competition right <a href="competitioncode.c">here</a>.</p>
+<p>Software was jointly written by Tara and Carol using Arduino. Some PID control algorithms were reused from previous ENPH 253 labs, but other methods were written completely from scratch. You can download the Arduino project we used for the competition right <a href="https://github.com/letsmakearobot/software/archive/master.zip">here</a>. (The whole, single file source code will be released soon, I promise.)</p>
 
 <h3>
 <a id="41-navigation" class="anchor" href="#41-navigation" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>4.1 Navigation</h3>
@@ -120,12 +129,16 @@
 <h3>
 <a id="43-passenger-pickup" class="anchor" href="#43-passenger-pickup" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>4.3 Passenger pickup</h3>
 
+<p><img src="lift.gif" alt="Jack, I'm flying!"></p>
+
 <p>Passenger pickup was taken care of with modular methods for controlling the arm, in addition to experimentally determined positions for pickup and dropoff. </p>
 
 <p>Due to space constrictions, our robot was optimized for pickup on the left side of the sidewalk, so if a passenger was detected on the right, the robot would reverse itself and re-initiate the more advanced position algorithm before attempting to pick it up.</p>
 
 <h3>
 <a id="44-tape-following" class="anchor" href="#44-tape-following" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>4.4 Tape following</h3>
+
+<p><img src="spin.gif" alt="Oh, the early days."></p>
 
 <p>Tape following was accomplished using the PID control algorithms from a previous ENPH 253 lab, with our motors being powered at about 50% PWM at cruising speed. Based on the output of the two tapefinding sensors, the robot senses its position on the tape, and corrects its position by adjusting the speed of the two drive wheels independently.</p>
 
@@ -136,6 +149,8 @@
 
 <h2>
 <a id="5-performance" class="anchor" href="#5-performance" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>5 Performance</h2>
+
+<p><img src="comp.gif" alt="Short video of competition run!"></p>
 
 <p>In a controlled testing circuit, the Claw was able to stop accurately for passengers almost 100% of the time, pick up the passengers some of the time (sometimes the actual claw would push them out), and reliably navigate the course without getting lost, even when handling collisions. However, on the competition surface, our robot suffered from IR blindness due to loose female headers that connected our IR circuit to our power distribution circuit, causing it to drive right by some passengers, and run in circles around one of the city blocks, since the floating inputs of the IR sensors were pulled up internally by the TINAH. All in all, the whole month-long ordeal was a great learning experience.</p>
       </section>
