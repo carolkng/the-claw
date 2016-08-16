@@ -1,0 +1,12 @@
+nav#toc-desktop {
+    position: fixed;
+    width: 270px;
+    top: 317px;
+}
+
+nav#toc-mobile { display:none; }
+
+@media print, screen and (max-width: 960px), screen and (max-height: 829px) {
+    nav#toc-mobile { display:block; }
+    nav#toc-desktop { display:none; }
+}
