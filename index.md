@@ -15,7 +15,7 @@
 ## 1. Introduction
 ![The robot, the myth, the legend](artview.JPG)
 
-The Claw is a robot that can navigate a city whose roads are marked with black electrical tape on a white surface using 4 QRD 1114 reflectivity sensors, detect stuffed animal passengers with QSD 1124 infrared sensors, and pick them up with a large claw. The robot receives instructions from a TINAH board running mostly Arduino code. It was created and completed in the summer of second year for the ENPH 253: Introduction to Instrument Design course/competition at UBC by Tara Akhound-Sadegh, [Carol Ng](https://carolkng.github.io), Jamie O'Conniff, and Dylan Whitney.
+The Claw is a robot that can navigate a city whose roads are marked with black electrical tape on a white surface using 4 QRD 1114 reflectivity sensors, detect stuffed animal passengers with QSD 1124 infrared sensors, and pick them up with a large claw. The robot receives instructions from a TINAH board running mostly Arduino code. It was created and completed in the summer of second year for the ENPH 253: Introduction to Instrument Design course/competition at UBC by Tara Akhound-Sadegh, [Carol Ng](https://www.carolkng.com), Jamie O'Conniff, and Dylan Whitney.
 
 ## 2. Mechanical design
 Jamie and Dylan were responsible for the majority of the robot's mechanical design. All parts were designed in Solidworks and fabricated (in order of most used) with a combination of a waterjet cutter, machine shop/hand tools, 3D printers, and a laser cutter.
