@@ -1,0 +1,8 @@
+title: The Claw
+description: A fully autonomous Uber-bot for stuffed animal transportation.
+google_analytics: 
+show_downloads: true
+theme: jekyll-theme-minimal
+
+gems:
+  - jekyll-mentions
